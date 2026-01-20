@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encode Message</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Encode Message into Image</h1>
+
+<div class="container">
+  <input type="file" id="imageInput" accept="image/jpeg">
+  <textarea id="messageInput" placeholder="Enter message to hide"></textarea>
+
+  <button class="encode" onclick="encodeMessage()">Hide Message</button>
+  <button class="download" onclick="downloadImage()">Download Image</button>
+
+  <canvas id="canvas"></canvas>
+  <p id="output"></p>
+
+  <br>
+  <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script src="js/stego.js"></script>
+<script src="js/encode.js"></script>
+
+</body>
+</html>

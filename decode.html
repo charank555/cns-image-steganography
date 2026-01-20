@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decode Message</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h1>Decode Hidden Message</h1>
+
+<div class="container">
+  <input type="file" id="imageInput" accept="image/jpeg">
+
+  <button class="decode" onclick="decodeMessage()">Decode Message</button>
+  <button class="audio" onclick="speakMessage()">Play Audio</button>
+
+  <canvas id="canvas"></canvas>
+  <p id="output"></p>
+
+  <br>
+  <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script src="js/stego.js"></script>
+<script src="js/decode.js"></script>
+<script src="js/tts.js"></script>
+
+</body>
+</html>
