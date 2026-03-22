@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Decode · StegoApp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="hdr">
+  <a href="index.html" class="back">‹</a>
+  <h1>Decode Message</h1>
+</div>
+
+<div class="pg">
+
+  <div class="card">
+    <p class="lbl">Select Encoded PNG</p>
+    <div class="upload">
+      <input type="file" id="imgInput" accept="image/png,image/jpeg,image/jpg">
+      <div class="ico">🔍</div>
+      <div class="ttl">Tap to choose</div>
+      <div class="hint">Use the PNG saved by StegoApp</div>
+      <div class="fname" id="fname"></div>
+    </div>
+  </div>
+
+  <button class="btn btn-p" onclick="decodeMessage()">🔓 Reveal Message</button>
+
+  <div class="mt">
+    <div class="prev" id="prevWrap"><canvas id="canvas"></canvas></div>
+  </div>
+
+  <div class="outbox mt" id="outbox">
+    <p class="lbl">Decoded Message</p>
+    <div class="outtext" id="output"></div>
+  </div>
+
+  <div class="row" id="audioRow" style="display:none">
+    <button class="btn btn-r" onclick="playDecodedAudio()">🔊 Read Aloud</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/stego.js"></script>
+<script src="js/decode.js"></script>
+<script src="js/tts.js"></script>
+<script>
+  document.getElementById('imgInput').addEventListener('change', function() {
+    document.getElementById('fname').textContent = this.files[0]?.name || '';
+  });
+  function showToast(msg, err) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (err ? ' err' : '');
+    void t.offsetWidth; t.classList.add('on');
+    setTimeout(() => t.classList.remove('on'), 3500);
+  }
+</script>
+</body>
+</html>

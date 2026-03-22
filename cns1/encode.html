@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Encode · StegoApp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="hdr">
+  <a href="index.html" class="back">‹</a>
+  <h1>Encode Message</h1>
+</div>
+
+<div class="pg">
+
+  <div class="card">
+    <p class="lbl">1 — Select Image (JPG/PNG)</p>
+    <div class="upload">
+      <input type="file" id="imgInput" accept="image/jpeg,image/jpg,image/png">
+      <div class="ico">📷</div>
+      <div class="ttl">Tap to choose</div>
+      <div class="hint">.jpg / .jpeg / .png</div>
+      <div class="fname" id="fname"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="lbl">2 — Secret Message</p>
+    <textarea class="msgbox" id="msgInput" placeholder="Type your hidden message…" maxlength="8000"></textarea>
+    <div class="ccount"><span id="cc">0</span> / 8000</div>
+  </div>
+
+  <button class="btn btn-g" onclick="encodeMessage()">🔏 Hide Message</button>
+
+  <div class="mt">
+    <p class="lbl" id="prevLbl" style="display:none">Preview</p>
+    <div class="prev" id="prevWrap"><canvas id="canvas"></canvas></div>
+  </div>
+
+  <div class="row" id="dlRow" style="display:none">
+    <button class="btn btn-o" onclick="downloadImage()">⬇ Save as PNG</button>
+  </div>
+
+  <div class="note mt" id="note" style="display:none">
+    ⚠️ Must save as PNG — JPEG compression destroys hidden data
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/stego.js"></script>
+<script src="js/encode.js"></script>
+<script>
+  document.getElementById('imgInput').addEventListener('change', function() {
+    document.getElementById('fname').textContent = this.files[0]?.name || '';
+  });
+  document.getElementById('msgInput').addEventListener('input', function() {
+    document.getElementById('cc').textContent = this.value.length;
+  });
+  function showToast(msg, err) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (err ? ' err' : '');
+    void t.offsetWidth; t.classList.add('on');
+    setTimeout(() => t.classList.remove('on'), 3000);
+  }
+</script>
+</body>
+</html>
